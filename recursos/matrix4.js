@@ -23,6 +23,13 @@ class Matrix4 extends Float32Array {
         m[1] = s;   m[5] = c;
         return this.multiply(m);
     }
+    scale(sx, sy, sz) {
+        const m = new Matrix4();
+        m[0] = sx;
+        m[5] = sy;
+        m[10] = sz;
+        return this.multiply(m);
+    }
     multiply(other) {
         const a = this;
         const b = other;

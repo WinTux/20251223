@@ -61,10 +61,15 @@ const uModelMatrix = gl.getUniformLocation(program, "uModelMatrix");
 
 // función para renderizar la escena
 function render() {
-   const tx = parseFloat(tx.value);
-   const ty = parseFloat(ty.value);
-   const rot = parseFloat(rot.value);
-   const sx = parseFloat(sx.value);
+    const inputTx  = document.getElementById("tx");
+    const inputTy  = document.getElementById("ty");
+    const inputRot = document.getElementById("rot");
+    const inputSx  = document.getElementById("sx");
+
+   const tx  = parseFloat(inputTx.value);
+   const ty  = parseFloat(inputTy.value);
+   const rot = parseFloat(inputRot.value);
+   const sx  = parseFloat(inputSx.value);
 
    // crear la matriz de modelo
    const modelMatrix = new Matrix4()
