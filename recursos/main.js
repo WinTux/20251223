@@ -66,10 +66,11 @@ function render() {
     const inputRot = document.getElementById("rot");
     const inputSx  = document.getElementById("sx");
 
-   const tx  = parseFloat(inputTx.value);
-   const ty  = parseFloat(inputTy.value);
-   const rot = parseFloat(inputRot.value);
-   const sx  = parseFloat(inputSx.value);
+    const tx  = parseFloat(inputTx.value);
+    const ty  = parseFloat(inputTy.value);
+    const degrees = parseFloat(inputRot.value);
+    const rot = degrees * Math.PI / 180;
+    const sx  = parseFloat(inputSx.value);
 
    // crear la matriz de modelo
    const modelMatrix = new Matrix4()
