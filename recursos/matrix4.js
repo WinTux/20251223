@@ -8,31 +8,31 @@ class Matrix4 extends Float32Array {
             this[i] = (i % 5 === 0) ? 1 : 0;
         return this;
     }
-    translate(x, y, z) {
+    trasladar(x, y, z) {
         const m = new Matrix4();
         m[12] = x;
         m[13] = y;
         m[14] = z;
-        return this.multiply(m);
+        return this.multiplicar(m);
     }
-    rotateZ(angle) {
-        const c = Math.cos(angle);
-        const s = Math.sin(angle);
+    rotarZ(angulo) {
+        const c = Math.cos(angulo);
+        const s = Math.sin(angulo);
         const m = new Matrix4();
         m[0] = c;   m[4] = -s;
         m[1] = s;   m[5] = c;
-        return this.multiply(m);
+        return this.multiplicar(m);
     }
-    scale(sx, sy, sz) {
+    escala(esx, esy, esz) {
         const m = new Matrix4();
-        m[0] = sx;
-        m[5] = sy;
-        m[10] = sz;
-        return this.multiply(m);
+        m[0] = esx;
+        m[5] = esy;
+        m[10] = esz;
+        return this.multiplicar(m);
     }
-    multiply(other) {
+    multiplicar(otro) {
         const a = this;
-        const b = other;
+        const b = otro;
         const result = new Matrix4();
         for (let row = 0; row < 4; row++) {
             for (let col = 0; col < 4; col++) {

@@ -15,14 +15,14 @@ const vertexShaderSource = `
 const fragmentShaderSource = `
     precision mediump float;
     void main() {
-        gl_FragColor = vec4(0.0, 0.5, 1.0, 1.0);
+        gl_FragColor = vec4(1.0, 0.5, 0.0, 1.0);
     }
 `;
 
 // función para compilar shaders
-function compileShader(source, type) {
-    const shader = gl.createShader(type);
-    gl.shaderSource(shader, source);
+function compilarShader(codFuente, tipo) {
+    const shader = gl.createShader(tipo);
+    gl.shaderSource(shader, codFuente);
     gl.compileShader(shader);
     if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
         console.error("Error al compilar el shader:", gl.getShaderInfoLog(shader));
@@ -33,8 +33,8 @@ function compileShader(source, type) {
 }
 
 const program = gl.createProgram();
-gl.attachShader(program, compileShader(vertexShaderSource, gl.VERTEX_SHADER));
-gl.attachShader(program, compileShader(fragmentShaderSource, gl.FRAGMENT_SHADER));
+gl.attachShader(program, compilarShader(vertexShaderSource, gl.VERTEX_SHADER));
+gl.attachShader(program, compilarShader(fragmentShaderSource, gl.FRAGMENT_SHADER));
 gl.linkProgram(program);
 if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
     console.error("Error al enlazar el programa:", gl.getProgramInfoLog(program));
@@ -64,19 +64,19 @@ function render() {
     const inputTx  = document.getElementById("tx");
     const inputTy  = document.getElementById("ty");
     const inputRot = document.getElementById("rot");
-    const inputSx  = document.getElementById("sx");
+    const inputEs  = document.getElementById("es");
 
     const tx  = parseFloat(inputTx.value);
     const ty  = parseFloat(inputTy.value);
-    const degrees = parseFloat(inputRot.value);
-    const rot = degrees * Math.PI / 180;
-    const sx  = parseFloat(inputSx.value);
+    const grados = parseFloat(inputRot.value);
+    const rot = grados * Math.PI / 180;
+    const es  = parseFloat(inputEs.value);
 
    // crear la matriz de modelo
    const modelMatrix = new Matrix4()
-   .translate(tx, ty, 0)
-   .rotateZ(rot)
-   .scale(sx, sx, 1);
+   .trasladar(tx, ty, 0)
+   .rotarZ(rot)
+   .escala(es, es, 1);
 
    // pasar la matriz de modelo al shader
    gl.uniformMatrix4fv(uModelMatrix, false, modelMatrix);
